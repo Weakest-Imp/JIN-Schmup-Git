@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     protected Engines engine;
+    protected BulletGun bulletGun;
 
     protected float horInput;
     protected float verInput;
@@ -13,13 +14,17 @@ public class InputController : MonoBehaviour
 
     void Awake() {
         engine = this.GetComponent<Engines>();
+        bulletGun = this.GetComponent<BulletGun>();
     }
 
     
     void Update() {
         CheckInput();
 
-        engine.SetSpeed(new Vector2(horInput, verInput));
+        engine.SetDirection(new Vector2(horInput, verInput));
+        if(fireInput > 0) {
+            bulletGun.Fire();
+        }
     }
 
     void CheckInput() {

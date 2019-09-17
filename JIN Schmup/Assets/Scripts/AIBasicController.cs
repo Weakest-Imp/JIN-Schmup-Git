@@ -6,6 +6,6 @@ public class AIBasicController : InputController
 {
       
     void Update() {
-        engine.SetSpeed(Vector2.left);
+        engine.SetDirection(Vector2.left);
     }
 }

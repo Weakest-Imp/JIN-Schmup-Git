@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class Engines : MonoBehaviour
 {
+    private Rigidbody2D rb;
     private BaseAvatar avatar;
 
-    private Vector2 position;
-    private Vector2 speed;
+    [SerializeField] private float speed;
+
+    [SerializeField] private Vector2 direction;
 
 
     void Awake() {
+        rb = GetComponent<Rigidbody2D>();
         avatar = this.GetComponent<BaseAvatar>();
-
-        position = new Vector2(transform.position.x, transform.position.y);
-    }
-    
-
-    void Update() {
-        speed.Normalize();
-        speed = speed * avatar.GetMaxSpeed();
         
-        position += speed * Time.deltaTime;
-        transform.position = new Vector3(position.x, position.y, transform.position.z);
+        speed = avatar.GetMaxSpeed();
+
+        rb.velocity = speed * direction;
     }
 
+    public void SetDirection(Vector2 dir) {
+        direction = dir;
+        direction.Normalize();
 
-    public void SetSpeed(Vector2 newSpeed) { speed = newSpeed; }
+        rb.velocity = speed * direction;
+    }
 }

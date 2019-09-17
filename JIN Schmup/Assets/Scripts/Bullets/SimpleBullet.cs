@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAvatar : BaseAvatar
+public class SimpleBullet : Bullet
 {
-    
+   
 }
