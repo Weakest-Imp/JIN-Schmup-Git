@@ -44,3 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 3903334689
+    locked: 0
+  - name: Bullets
+    uniqueID: 3855996827
+    locked: 0
+  - name: Enemy
+    uniqueID: 2048732517
+    locked: 0
+  - name: Player
+    uniqueID: 2303835947
+    locked: 0
+  - name: UI
+    uniqueID: 3175088149
+    locked: 0

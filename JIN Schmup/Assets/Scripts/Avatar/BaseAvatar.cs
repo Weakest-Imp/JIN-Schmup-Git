@@ -22,10 +22,12 @@ public class BaseAvatar : MonoBehaviour
         }
     }
 
-    void Die() {
+    virtual protected void Die() {
         gameObject.SetActive(false);
     }
 
 
     public float GetMaxSpeed() { return maxSpeed; }
+    public float GetMaxHealth() { return maxHealth; }
+    public float GetHealth() { return health; }
 }

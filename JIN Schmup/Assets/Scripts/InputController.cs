@@ -24,6 +24,8 @@ public class InputController : MonoBehaviour
         engine.SetDirection(new Vector2(horInput, verInput));
         if(fireInput > 0) {
             bulletGun.Fire();
+        } else {
+            bulletGun.NotFire();
         }
     }
 

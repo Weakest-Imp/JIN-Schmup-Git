@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\NomWall.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Quentin/Desktop/Jeux/Projets Unity/JIN Schmup/JIN-Schmup-Git/JIN Schmup/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

@@ -5,15 +5,23 @@ using UnityEngine;
 public class BulletGun : MonoBehaviour
 {
     [SerializeField] protected GameObject simpleBullet;
+    [SerializeField] protected float simpleCost = 10;
 
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float speed = 10;
     [SerializeField] protected float cooldown = 0.3f;
     protected float currentCooldown = 0;
 
+    [SerializeField] protected float maxEnergy = 100;
+    protected float energy;
+    [SerializeField] protected float recoverSpeed = 20;
+    protected bool emptiedEnergy = false;
+    [SerializeField] protected float emptyMalus = 0.75f;
+
+
     void Start()
     {
-        
+        energy = maxEnergy;
     }
 
     
@@ -24,10 +32,49 @@ public class BulletGun : MonoBehaviour
     }
 
     virtual public void Fire() {
-        if (currentCooldown <= 0) {
-            currentCooldown = cooldown;
-            GameObject bullet = Instantiate(simpleBullet, this.transform.position, this.transform.rotation);
-            bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.right);
+        if (!emptiedEnergy) {
+            if (currentCooldown <= 0 && energy > 0) {
+                currentCooldown = cooldown;
+                UseEnergy(simpleCost);
+                GameObject bullet = Instantiate(simpleBullet, this.transform.position, this.transform.rotation);
+                bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.right);
+            }
+        } else { NotFire(); }
+    }
+
+    virtual public void NotFire() {
+        if (currentCooldown < 0) {
+            if (!emptiedEnergy) {
+                RestoreEnergy(recoverSpeed * Time.deltaTime);
+            }
+            else {
+                RestoreEnergy(recoverSpeed * emptyMalus * Time.deltaTime);
+            }
         }
     }
+
+
+
+
+    protected void UseEnergy(float cost) {
+        energy -= cost;
+        if(energy <= 0) {
+            energy = 0;
+            emptiedEnergy = true;
+        }
+    }
+
+    protected void RestoreEnergy (float restore) {
+        energy += restore;
+        if (energy > maxEnergy)
+        {
+            energy = maxEnergy;
+            emptiedEnergy = false;
+        }
+    }
+
+
+
+    public float GetMaxEnergy() { return maxEnergy; }
+    public float GetEnergy() { return energy; }
 }
