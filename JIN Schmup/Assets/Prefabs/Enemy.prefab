@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1871138084}
   - component: {fileID: 1871138085}
   - component: {fileID: 4037564801142727867}
-  m_Layer: 0
+  - component: {fileID: 153800653566118135}
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -172,3 +173,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef4d9ca998c892438668c288cb7d481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &153800653566118135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696280087063793861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c39f53e1d4eb3c4ebb5ad7051cf8b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleBullet: {fileID: 9154588822501440026, guid: c46d552fb44fb5143a6ed0e3bdaadd82,
+    type: 3}
+  damage: 1
+  speed: 3
+  cooldown: 2

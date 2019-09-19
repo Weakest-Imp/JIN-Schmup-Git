@@ -7,5 +7,6 @@ public class AIBasicController : InputController
       
     void Update() {
         engine.SetDirection(Vector2.left);
+        bulletGun.Fire();
     }
 }

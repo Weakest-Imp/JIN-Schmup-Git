@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BulletGun : MonoBehaviour
 {
-    [SerializeField] private GameObject simpleBullet;
+    [SerializeField] protected GameObject simpleBullet;
 
-    [SerializeField] private int damage = 1;
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float cooldown = 0.3f;
-    private float currentCooldown = 0;
+    [SerializeField] protected int damage = 1;
+    [SerializeField] protected float speed = 10;
+    [SerializeField] protected float cooldown = 0.3f;
+    protected float currentCooldown = 0;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class BulletGun : MonoBehaviour
         }
     }
 
-    public void Fire() {
+    virtual public void Fire() {
         if (currentCooldown <= 0) {
             currentCooldown = cooldown;
             GameObject bullet = Instantiate(simpleBullet, this.transform.position, this.transform.rotation);

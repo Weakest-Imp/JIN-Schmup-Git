@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Avatar\BaseAvatar.cs" />
     <Compile Include="Assets\Scripts\Avatar\EnemyAvatar.cs" />
     <Compile Include="Assets\Scripts\Avatar\PlayerAvatar.cs" />
+    <Compile Include="Assets\Scripts\Bullets\AIBasicBulletGun.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Bullets\BulletGun.cs" />
     <Compile Include="Assets\Scripts\Bullets\SimpleBullet.cs" />

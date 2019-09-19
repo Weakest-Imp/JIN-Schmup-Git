@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage = 1;
 
-    public float Damage {
+    public int Damage {
         get { return damage; }
         set { damage = value; }
     }
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     private Vector2 position;
 
 
-     void Awake() {
+    void Awake() {
         position = new Vector2(transform.position.x, transform.position.y);
     }
     
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         transform.position = new Vector3(position.x, position.y, 0);
     }
 
-    public void Init(float iniDamage, float iniSpeed, Vector2 iniDirection)
+    public void Init(int iniDamage, float iniSpeed, Vector2 iniDirection)
     {
         damage = iniDamage;
         speed = iniSpeed;
@@ -36,5 +36,18 @@ public class Bullet : MonoBehaviour
         //transform.position = new Vector3(iniPosition.x, iniPosition.y, 0);
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D other) {
+        string tag = other.gameObject.tag;
+        if (tag == "Bullet") {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+        else if(tag == "Player" || tag == "Enemy") {
+            BaseAvatar avatar = other.GetComponent<BaseAvatar>();
+            avatar.TakeDamage(damage);
+            Destroy(this.gameObject);
+        }
+    }
+
+
 }
