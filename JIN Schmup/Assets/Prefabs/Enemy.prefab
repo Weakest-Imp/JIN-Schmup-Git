@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86d87258b09d6b4c91c20638f18443e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   direction: {x: -1, y: 0}
 --- !u!114 &1871138085
 MonoBehaviour:
@@ -188,5 +188,5 @@ MonoBehaviour:
   simpleBullet: {fileID: 9154588822501440026, guid: c46d552fb44fb5143a6ed0e3bdaadd82,
     type: 3}
   damage: 1
-  speed: 3
-  cooldown: 2
+  speed: 4
+  cooldown: 5

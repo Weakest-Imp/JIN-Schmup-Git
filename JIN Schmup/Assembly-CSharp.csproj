@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Bullets\BulletGun.cs" />
     <Compile Include="Assets\Scripts\Bullets\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\Engines.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\NomWall.cs" />
     <Reference Include="Unity.Timeline.Editor">
