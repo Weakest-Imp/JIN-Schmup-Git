@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Rigidbody2D rb;
-
-
     [SerializeField] private float damage;
 
     public float Damage {
@@ -16,15 +13,17 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private Vector2 direction;
+    private Vector2 position;
 
 
      void Awake() {
-        rb = GetComponent<Rigidbody2D>();
-        
+        position = new Vector2(transform.position.x, transform.position.y);
     }
     
     void Update() {
-        
+        position += speed * direction * Time.deltaTime;
+
+        transform.position = new Vector3(position.x, position.y, 0);
     }
 
     public void Init(float iniDamage, float iniSpeed, Vector2 iniDirection)
@@ -32,8 +31,6 @@ public class Bullet : MonoBehaviour
         damage = iniDamage;
         speed = iniSpeed;
         direction = iniDirection;
-
-        rb.velocity = speed * direction;
 
         //Keep for pools
         //transform.position = new Vector3(iniPosition.x, iniPosition.y, 0);
