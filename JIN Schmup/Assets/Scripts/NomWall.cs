@@ -5,6 +5,6 @@ using UnityEngine;
 public class NomWall : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other) {
-        Destroy(other.gameObject);
+        other.gameObject.SetActive(false);
     }
 }

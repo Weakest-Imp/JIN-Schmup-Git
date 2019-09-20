@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    private FactoryManager factory;
+
     [SerializeField] private GameObject player;
     private GameObject currentPlayer;
 
@@ -26,6 +28,13 @@ public class GameManager : MonoBehaviour
         }
 
         currentPlayer = Instantiate(player, transform.position, transform.rotation);
+        
+    }
+
+    private void Start()
+    {
+        factory = FactoryManager.Instance;
+
         StartCoroutine(PoulpPop());
     }
 
@@ -33,7 +42,8 @@ public class GameManager : MonoBehaviour
         float poulpY = 0;
         while (true) {
             poulpY = Random.Range(poulpMinY, poulpMaxY);
-            Instantiate(poulp, new Vector3(poulpX, poulpY, 0), Quaternion.Euler(0, 0, 0));
+            GameObject poulp = factory.Spawn(FactoryManager.ProductType.enemy);
+            poulp.transform.position = new Vector3(poulpX, poulpY, 0);
             yield return new WaitForSeconds(poulpPopTime);
         }
     }

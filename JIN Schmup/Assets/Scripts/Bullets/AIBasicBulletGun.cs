@@ -9,8 +9,10 @@ public class AIBasicBulletGun : BulletGun
         if (currentCooldown <= 0)
         {
             currentCooldown = cooldown;
-            GameObject bullet = Instantiate(simpleBullet, this.transform.position, this.transform.rotation);
-            bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.left);
+            GameObject bullet = factory.Spawn(FactoryManager.ProductType.enemyBullet);
+
+            Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y);
+            bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.left, bulletPosition);
         }
     }
 }

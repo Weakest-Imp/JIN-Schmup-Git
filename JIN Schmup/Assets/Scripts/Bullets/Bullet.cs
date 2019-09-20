@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     private Vector2 position;
 
 
-    void Awake() {
+    void Start() {
         position = new Vector2(transform.position.x, transform.position.y);
     }
     
@@ -26,26 +26,26 @@ public class Bullet : MonoBehaviour
         transform.position = new Vector3(position.x, position.y, 0);
     }
 
-    public void Init(int iniDamage, float iniSpeed, Vector2 iniDirection)
+    public void Init(int iniDamage, float iniSpeed, Vector2 iniDirection, Vector2 iniPosition)
     {
         damage = iniDamage;
         speed = iniSpeed;
         direction = iniDirection;
 
-        //Keep for pools
-        //transform.position = new Vector3(iniPosition.x, iniPosition.y, 0);
+        position = iniPosition;
+        transform.position = new Vector3(iniPosition.x, iniPosition.y, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         string tag = other.gameObject.tag;
         if (tag == "Bullet") {
-            Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
         else if(tag == "Player" || tag == "Enemy") {
             BaseAvatar avatar = other.GetComponent<BaseAvatar>();
             avatar.TakeDamage(damage);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 

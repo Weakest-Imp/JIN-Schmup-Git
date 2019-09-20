@@ -71,6 +71,8 @@
     <Compile Include="Assets\Scripts\Bullets\BulletGun.cs" />
     <Compile Include="Assets\Scripts\Bullets\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\Engines.cs" />
+    <Compile Include="Assets\Scripts\Factories\Factory.cs" />
+    <Compile Include="Assets\Scripts\Factories\FactoryManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />

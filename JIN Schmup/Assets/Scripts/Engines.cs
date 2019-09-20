@@ -16,10 +16,15 @@ public class Engines : MonoBehaviour
         avatar = this.GetComponent<BaseAvatar>();
         
         speed = avatar.GetMaxSpeed();
+    }
+
+    private void Start() {
         position = new Vector2(transform.position.x, transform.position.y);
     }
 
     private void Update() {
+
+        position = new Vector2(transform.position.x, transform.position.y);
         position += speed * direction * Time.deltaTime;
 
         transform.position = new Vector3(position.x, position.y, 0);

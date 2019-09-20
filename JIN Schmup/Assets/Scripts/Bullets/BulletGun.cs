@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletGun : MonoBehaviour
 {
+    protected FactoryManager factory;
+
     [SerializeField] protected GameObject simpleBullet;
     [SerializeField] protected float simpleCost = 10;
 
@@ -22,6 +24,8 @@ public class BulletGun : MonoBehaviour
     void Start()
     {
         energy = maxEnergy;
+
+        factory = FactoryManager.Instance;
     }
 
     
@@ -36,8 +40,11 @@ public class BulletGun : MonoBehaviour
             if (currentCooldown <= 0 && energy > 0) {
                 currentCooldown = cooldown;
                 UseEnergy(simpleCost);
-                GameObject bullet = Instantiate(simpleBullet, this.transform.position, this.transform.rotation);
-                bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.right);
+
+                GameObject bullet = factory.Spawn(FactoryManager.ProductType.playerBullet);
+
+                Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y);
+                bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.right, bulletPosition);
             }
         } else { NotFire(); }
     }
