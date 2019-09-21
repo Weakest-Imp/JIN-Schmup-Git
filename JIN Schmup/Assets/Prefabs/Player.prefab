@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1991131349
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 659531cf526be2e4abf196fe2b04191c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,12 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff5c78204c015840bd5300a8d2237c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleBullet: {fileID: 365616515094462680, guid: 7bb1582c815afc3449b3ee8c97e496d0,
-    type: 3}
-  simpleCost: 5
+  simpleCost: 10
+  spiralCost: 20
   damage: 1
   speed: 10
   cooldown: 0.3
   maxEnergy: 100
-  recoverSpeed: 10
+  recoverSpeed: 30
   emptyMalus: 0.75

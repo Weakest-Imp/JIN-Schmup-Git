@@ -69,7 +69,7 @@
     <Compile Include="Assets\Scripts\Bullets\AIBasicBulletGun.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Bullets\BulletGun.cs" />
-    <Compile Include="Assets\Scripts\Bullets\SimpleBullet.cs" />
+    <Compile Include="Assets\Scripts\Bullets\PlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Engines.cs" />
     <Compile Include="Assets\Scripts\Factories\Factory.cs" />
     <Compile Include="Assets\Scripts\Factories\FactoryManager.cs" />

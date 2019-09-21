@@ -6,8 +6,15 @@ public class BulletGun : MonoBehaviour
 {
     protected FactoryManager factory;
 
-    [SerializeField] protected GameObject simpleBullet;
+    public enum BulletType
+    {
+        simple,
+        spiral
+    }
+    protected BulletType bulletType = BulletType.simple;
+    
     [SerializeField] protected float simpleCost = 10;
+    [SerializeField] protected float spiralCost = 20;
 
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float speed = 10;
@@ -39,14 +46,45 @@ public class BulletGun : MonoBehaviour
         if (!emptiedEnergy) {
             if (currentCooldown <= 0 && energy > 0) {
                 currentCooldown = cooldown;
-                UseEnergy(simpleCost);
-
-                GameObject bullet = factory.Spawn(FactoryManager.ProductType.playerBullet);
-
-                Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y);
-                bullet.GetComponent<Bullet>().Init(damage, speed, Vector2.right, bulletPosition);
+                
+                switch (bulletType)
+                {
+                    case BulletType.simple :
+                        SimpleFire();
+                        break;
+                    case BulletType.spiral:
+                        SpiralFire();
+                        break;
+                    default:
+                        break;
+                }
+            
             }
         } else { NotFire(); }
+    }
+
+    void SimpleFire() {
+        UseEnergy(simpleCost);
+
+        GameObject bullet = factory.Spawn(FactoryManager.ProductType.playerBullet);
+        PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
+
+        Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y);
+        playerBullet.SetBulletType(bulletType);
+        playerBullet.Init(damage, speed, Vector2.right, bulletPosition);
+    }
+
+    void SpiralFire() {
+        UseEnergy(spiralCost);
+
+        for (int i = 0; i < 4; i++) {
+            GameObject bullet = factory.Spawn(FactoryManager.ProductType.playerBullet);
+            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
+
+            Vector2 bulletPosition = new Vector2(transform.position.x, transform.position.y);
+            playerBullet.SetBulletType(bulletType);
+            playerBullet.Init(damage, speed, Rotate(Vector2.right, i * Mathf.PI/2), bulletPosition);
+        }
     }
 
     virtual public void NotFire() {
@@ -59,6 +97,16 @@ public class BulletGun : MonoBehaviour
             }
         }
     }
+
+    public void ChangeBulletType() {
+        //needs to check for the last BulletType possible, to make it loop
+        if (bulletType != BulletType.spiral) {
+            bulletType++;
+        } else {
+            bulletType = BulletType.simple;
+        }
+    }
+
 
 
 
@@ -82,6 +130,16 @@ public class BulletGun : MonoBehaviour
 
 
 
+    Vector2 Rotate(Vector2 vector, float angle)
+    { //returns vector rotated by the angle, does not lose vector
+        float cos = Mathf.Cos(angle);
+        float sin = Mathf.Sin(angle);
+
+        return new Vector2(cos * vector.x - sin * vector.y, sin * vector.x + cos * vector.y);
+    }
+
+
     public float GetMaxEnergy() { return maxEnergy; }
     public float GetEnergy() { return energy; }
+
 }

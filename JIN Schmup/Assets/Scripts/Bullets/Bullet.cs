@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    [SerializeField] protected int damage = 1;
 
     public int Damage {
         get { return damage; }
         set { damage = value; }
     }
 
-    [SerializeField] private float speed;
-    [SerializeField] private Vector2 direction;
-    private Vector2 position;
+    [SerializeField] protected float speed;
+    [SerializeField] protected Vector2 direction;
+    protected Vector2 position;
 
 
     void Start() {
         position = new Vector2(transform.position.x, transform.position.y);
     }
     
-    void Update() {
+    virtual protected void Update() {
         position += speed * direction * Time.deltaTime;
 
         transform.position = new Vector3(position.x, position.y, 0);
     }
 
-    public void Init(int iniDamage, float iniSpeed, Vector2 iniDirection, Vector2 iniPosition)
+    virtual public void Init(int iniDamage, float iniSpeed, Vector2 iniDirection, Vector2 iniPosition)
     {
         damage = iniDamage;
         speed = iniSpeed;
@@ -49,5 +49,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
+    }
 
 }

@@ -11,6 +11,11 @@ public class InputController : MonoBehaviour
     protected float verInput;
     protected float fireInput;
 
+    protected float changeInput;
+    protected float previousChangeInput = 0;
+    protected bool changeInputpressed;
+
+
 
     void Awake() {
         engine = this.GetComponent<Engines>();
@@ -22,6 +27,11 @@ public class InputController : MonoBehaviour
         CheckInput();
 
         engine.SetDirection(new Vector2(horInput, verInput));
+
+        if (changeInputpressed) {
+            bulletGun.ChangeBulletType();
+        }
+
         if(fireInput > 0) {
             bulletGun.Fire();
         } else {
@@ -33,6 +43,10 @@ public class InputController : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
         fireInput = Input.GetAxisRaw("Fire1");
+
+        previousChangeInput = changeInput;
+        changeInput = Input.GetAxisRaw("Change");
+        changeInputpressed = (previousChangeInput == 0 && changeInput == 1);
     }
 
 }
